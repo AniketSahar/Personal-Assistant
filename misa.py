@@ -60,8 +60,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('sunofeast08@gmail.com', 'differentreasons@1')
-    server.sendmail('sunofeast08@gmail.com', to, content)
+    server.login('youremailid', 'yourpassword')
+    server.sendmail('the id to which you want to send the email', to, content)
     server.close()
 
 
@@ -89,7 +89,7 @@ if __name__ == "__main__":
              webbrowser.open("stackoverflow.com")
             
         elif 'play music' in query:
-            music_dir = 'C:\\Users\\SAUMITRA\\Music\\HIPHOP.F'
+            music_dir = '' #enter your music_dir
             songs =  os.listdir(music_dir)
             print(songs)
             os.startfile(os.path.join(music_dir, songs[0]))
@@ -99,14 +99,21 @@ if __name__ == "__main__":
             speak(f"The time is {strTime}")
 
         elif 'open code' in query:
-            code_path = "C:\\Users\\SAUMITRA\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+            code_path = "" #enter code path
             os.startfile(code_path)
 
-        elif 'email to aniket' in query:
+        elif 'email to' in query:
+            x = list(query)
+            y = x.split()
+            for i in y:
+                if i == 'to':
+                    z = y.index(i)
+                    a = int(y) + 1
+                    b = str(y[a])
             try:
                 speak('what should i say?')
                 content = taketask()
-                to =  "neelpreetisahar@gmail.com"
+                to =  b #can pass a string here too
                 sendEmail(to, content)
                 speak('Email has been sent!')
             except Exception as e:
@@ -121,12 +128,6 @@ if __name__ == "__main__":
         
         elif 'i am also fine' in query:
             speak('glad to know that!')
-
-        elif 'emiway bantai' in query:
-            speak('femiway, also known as femiway bunty is a mumble rapper. he doesnt know how to rap, he is a coward backstabber')
-
-        elif 'about krishna' in query:
-           speak('he is the father of femiway bunty, whom he beat with his badi dandi. he is the best Indian rapper')  
 
         elif 'open youtube' in query:
               webbrowser.open('youtube.com')
